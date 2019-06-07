@@ -19,11 +19,13 @@ async function scrapeCraigsList() {
     $('.jobsearch-SerpJobCard').each((index, element) => {
       const jobTitle = $(element)
         .children('.title')
-        .text();
+        .text().trim();
 
       const scrapeResult = { title: jobTitle };
       scrapeResults.push(scrapeResult);
     });
+
+    console.log(scrapeResults)
   } catch (err) {
     console.log(err);
   }
