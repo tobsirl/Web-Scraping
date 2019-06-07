@@ -7,6 +7,9 @@ async function main() {
     'https://reactnativetutorial.net/css-selectors'
   );
   fs.writeFileSync('./test.html', html);
+  const $ = await cheerio.load(html);
+  const theText = $('h1').text();
+  console.log(theText)
 }
 
 main();
