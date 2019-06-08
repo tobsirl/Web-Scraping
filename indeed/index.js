@@ -40,10 +40,10 @@ async function scrapeCraigsList() {
 
       const datePosted = $(element)
         .children('.jobsearch-SerpJobCard-footer')
-        .children('.jobsearch-SerpJobCard-footerActions')
-        .children('.result-link-bar-container')
-        .children('.result-link-bar')
-        .children('.date')
+        // .children('.jobsearch-SerpJobCard-footerActions')
+        // .children('.result-link-bar-container')
+        // .children('.result-link-bar')
+        .find('.date')
         .text();
 
       const scrapeResult = { title, company, summary, location, datePosted };
