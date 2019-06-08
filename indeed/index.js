@@ -1,5 +1,6 @@
 const request = require('request-promise');
 const cheerio = require('cheerio');
+const fs = require('fs');
 
 const url = 'https://ie.indeed.com/jobs?q=junior+react+developer&l=Ireland';
 
@@ -50,7 +51,10 @@ async function scrapeCraigsList() {
       scrapeResults.push(scrapeResult);
     });
 
-    console.log(scrapeResults);
+    const jsonResult = await JSON.stringify(scrapeResults);
+
+    fs.writeFileSync('./output.json', jsonResult, data => console.log(data));
+    // console.log(scrapeResults);
   } catch (err) {
     console.log(err);
   }
