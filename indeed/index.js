@@ -3,8 +3,6 @@ const cheerio = require('cheerio');
 
 const url = 'https://ie.indeed.com/jobs?q=junior+react+developer&l=Ireland';
 
-const craig = 'https://sfbay.craigslist.org/d/software-qa-dba-etc/search/sof';
-
 const scrapeResult = {
   title: ''
 };
@@ -17,15 +15,34 @@ async function scrapeCraigsList() {
     const $ = await cheerio.load(htmlResult);
 
     $('.jobsearch-SerpJobCard').each((index, element) => {
-      const jobTitle = $(element)
+      const title = $(element)
         .children('.title')
-        .text().trim();
+        .text()
+        .trim();
 
-      const scrapeResult = { title: jobTitle };
+      const company = $(element)
+        .children('.sjcl')
+        .children()
+        .children('.company')
+        .text()
+        .trim();
+
+      const summary = $(element)
+        .children('.summary')
+        .text()
+        .trim();
+
+      const location = $(element)
+        .children('.sjcl')
+        .children('.location')
+        .text()
+        .trim();
+
+      const scrapeResult = { title, company, summary, location };
       scrapeResults.push(scrapeResult);
     });
 
-    console.log(scrapeResults)
+    console.log(scrapeResults);
   } catch (err) {
     console.log(err);
   }
