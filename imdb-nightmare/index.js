@@ -1,5 +1,7 @@
 const request = require('request-promise');
 const cheerio = require('cheerio');
+const Nightmare = require('nightmare');
+const nightmare = Nightmare({ show: true });
 
 async function scrapeTitlesRankAndRatings() {
   const result = await request.get(
@@ -42,16 +44,36 @@ async function scrapePosterUrl(movies) {
           'https://www.imdb.com' + $('div.poster > a').attr('href');
         return movie;
       } catch (error) {
-       // console.error(error);
+        // console.error(error);
       }
     })
   );
   return moviesWithPosterUrls;
 }
 
+async function getPosterImageUrl(movies) {
+  for (let i = 0; i < movies.length; i++) {
+    try {
+      const posterImageUrl = await nightmare
+        .goto(movies[i].posterUrl)
+        .evaluate(() =>
+          $(
+            '#photo-container > div > div:nth-child(2) > div > div.pswp__scroll-wrap > div.pswp__container > div:nth-child(2) > div > img:nth-child(2)'
+          ).attr('src')
+        );
+      movies[i].posterImageUrl = posterImageUrl;
+      console.log(movies[i]);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  return movies;
+}
+
 async function main() {
   let movies = await scrapeTitlesRankAndRatings();
   movies = await scrapePosterUrl(movies);
+  movies = await getPosterImageUrl(movies);
   console.log(movies);
 }
 
