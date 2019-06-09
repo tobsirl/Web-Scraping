@@ -7,11 +7,19 @@ async function scrapeTitlesRankAndRatings() {
   );
   const $ = await cheerio.load(result);
 
-  const movies = $('td.titleColumn > a')
+  const movies = $('tr')
     .map((i, element) => {
-      return $(element).text();
+      const title = $(element)
+        .find('td.titleColumn > a')
+        .text();
+      const imdbRating = $(element)
+        .find('td.ratingColumn.imdbRating')
+        .text()
+        .trim();
+      return { title, imdbRating };
     })
     .get();
+
   console.log(movies);
 }
 
