@@ -12,11 +12,11 @@ async function scrapeTitlesRankAndRatings() {
       const title = $(element)
         .find('td.titleColumn > a')
         .text();
-      const imdbRating = $(element)
+      const imdbRating = Number($(element)
         .find('td.ratingColumn.imdbRating')
         .text()
-        .trim();
-      return { title, imdbRating };
+        .trim());
+      return { title, imdbRating, rank: i };
     })
     .get();
 
