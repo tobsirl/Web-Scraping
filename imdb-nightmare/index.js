@@ -1,4 +1,6 @@
 const request = require('request-promise');
+const regularRequest = require('request');
+const fs = require('fs');
 const cheerio = require('cheerio');
 const Nightmare = require('nightmare');
 const nightmare = Nightmare({ show: true });
@@ -62,12 +64,19 @@ async function getPosterImageUrl(movies) {
           ).attr('src')
         );
       movies[i].posterImageUrl = posterImageUrl;
+      savePoster(movies[i]);
       console.log(movies[i]);
     } catch (error) {
       console.error(error);
     }
   }
   return movies;
+}
+
+async function savePoster(movie) {
+  regularRequest
+    .get(movie.posterImageUrl)
+    .pipe(fs.createWriteStream(`posters/${movie.rank}.png`));
 }
 
 async function main() {
