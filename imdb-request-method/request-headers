@@ -1,0 +1,11 @@
+'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9',image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+'Accept-Encoding': 'gzip, deflate, br',
+'Accept-Language': 'en-IE,en-US;q=0.9,en;q=0.8',
+'cache-control': 'no-cache'
+'cookie': 'session-id=144-1446715-5938801; session-id-time=2175113460; adblk=adblk_no; ubid-main=134-5544239-8936009; uu=BCYp7sB6ouSoajJiXHSVWatLFqKvZBB1m4IG4daNAu7i_Fh0VZutL_WwFehF3sAhNrMYskDUQj7t%0D%0AYOfTt59Ecm5WwFx2UENRd6Ivem5DmIrWBTc7HeXTme5pgUCv1iGYg1CFu4U2xC-UeHD8EX3saTkz%0D%0A1dZT9lAfa1xOb0iWAuXz8nSHMKMF8MCep6qp7jfGEcNq8Tu5b4x_tMzIZUP_9VBVYrAb56OTdld2%0D%0Aa_fzeZSJ-rRIBcpUM_KTj1rLHukBQDj3%0D%0A; session-token=p6Ftk9V2daMIJBP5nXaHc1qeD8r3JUgyKY51qO6e+XiF6EmfFmTeptgTrRAEjc0rwSHKS0vLJTeO8/AW1oqmVodDOKe8bY0dKsw3mq5z4lRQGJ0SAtlJfCzGQFOe2nIyEBpdo4XjvBUjrG5EL7O78qx+WIGkE2c434GoI+z1VTaRkBRgUUKEgshe+gTEvKyR; csm-hit=tb:J3EZ0MFGPVN7P6QSDQHX+s-9CXFT13274867RRMP98Q|1572375755289&adb:adblk_no&t:1572375755289'
+'pragma': 'no-cache'
+'sec-fetch-mode': 'navigate'
+'sec-fetch-site': 'none'
+'sec-fetch-user': '?1'
+'upgrade-insecure-requests': 1
+'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36'
