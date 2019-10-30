@@ -33,5 +33,16 @@ const URL = 'https://www.imdb.com/title/tt9335498/?ref_=nv_sr_1?ref_=nv_sr_1';
 
   const totalRatings = $('div[class="imdbRating"] > a').text();
 
-  console.log({ title, rating, poster, totalRatings });
+  const realseDate = $('a[title="See more release dates"]').text();
+
+  const genres = [];
+  $('div[class="title_wrapper"] a[href^="/search/title?genres"]').each(
+    (i, el) => {
+      let genre = $(el).text();
+      genres.push(genre);
+    }
+  );
+
+  console.log({ title, rating, poster, totalRatings, realseDate });
+  console.log(`Genres: ${genres}`);
 })();
