@@ -1,0 +1,24 @@
+[
+  {
+    "title": "Demon Slayer: Kimetsu No Yaiba",
+    "rating": "9.0",
+    "poster": "https://m.media-amazon.com/images/M/MV5BZjZjNzI5MDctY2Y4YS00NmM4LTljMmItZTFkOTExNGI3ODRhXkEyXkFqcGdeQXVyNjc3MjQzNTI@._V1_UY268_CR5,0,182,268_AL_.jpg",
+    "totalRatings": "4,791",
+    "genres": [
+      "Animation",
+      "Action",
+      "Fantasy"
+    ]
+  },
+  {
+    "title": "The Promised Neverland",
+    "rating": "8.8",
+    "poster": "https://m.media-amazon.com/images/M/MV5BMTYwYjYyZDgtMTQ3My00YTI4LThmZTUtZmU1MjllOWRlOTdhXkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_UX182_CR0,0,182,268_AL_.jpg",
+    "totalRatings": "5,177",
+    "genres": [
+      "Animation",
+      "Fantasy",
+      "Horror"
+    ]
+  }
+]
