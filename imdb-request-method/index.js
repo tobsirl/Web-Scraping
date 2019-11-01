@@ -1,4 +1,5 @@
-const request = require('request-promise');
+const requestPromise = require('request-promise');
+const request = require('request');
 const cheerio = require('cheerio');
 const fs = require('fs');
 const { Parser } = require('json2csv');
@@ -11,7 +12,7 @@ const URLS = [
 (async () => {
   const movieData = [];
   for (let movie of URLS) {
-    const response = await request({
+    const response = await requestPromise({
       uri: movie,
       headers: {
         Accept:
@@ -60,18 +61,16 @@ const URLS = [
       totalRatings,
       genres
     });
-    
-    const fields = ['title', 'rating'];
 
-    const json2csvParser = new Parser({ fields });
+    const json2csvParser = new Parser();
     const csv = json2csvParser.parse(movieData);
 
     console.log(csv);
 
     // let data = JSON.stringify(movieData, null, 2);
-    // fs.writeFile('output.json', data, err => {
-    //   if (err) throw err;
-    //   console.log('Data written to file');
-    // });
+    fs.writeFile('output.csv', csv, err => {
+      if (err) throw err;
+      console.log('Data written to file');
+    });
   }
 })();
