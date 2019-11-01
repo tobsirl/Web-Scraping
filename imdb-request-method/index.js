@@ -5,15 +5,21 @@ const fs = require('fs');
 const { Parser } = require('json2csv');
 
 const URLS = [
-  'https://www.imdb.com/title/tt9335498/?ref_=nv_sr_1?ref_=nv_sr_1',
-  ' https://www.imdb.com/title/tt8788458/?ref_=tt_sims_tt'
+  {
+    url: 'https://www.imdb.com/title/tt9335498/?ref_=nv_sr_1?ref_=nv_sr_1',
+    id: 'Demon_Slayer:_Kimetsu_No_Yaiba'
+  },
+  {
+    url: ' https://www.imdb.com/title/tt8788458/?ref_=tt_sims_tt',
+    id: 'The_Promised_Neverland'
+  }
 ];
 
 (async () => {
   const movieData = [];
   for (let movie of URLS) {
     const response = await requestPromise({
-      uri: movie,
+      uri: movie.url,
       headers: {
         Accept:
           'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
@@ -62,15 +68,19 @@ const URLS = [
       genres
     });
 
-    const json2csvParser = new Parser();
-    const csv = json2csvParser.parse(movieData);
+    const file = fs.createWriteStream(`S{movie.id}.jpg`);
 
-    console.log(csv);
+    //* Output to a CSV file
+    // const json2csvParser = new Parser();
+    // const csv = json2csvParser.parse(movieData);
 
+    // console.log(csv);
+
+    //* Output to a JSON file
     // let data = JSON.stringify(movieData, null, 2);
-    fs.writeFile('output.csv', csv, err => {
-      if (err) throw err;
-      console.log('Data written to file');
-    });
+    // fs.writeFile('output.csv', csv, err => {
+    //   if (err) throw err;
+    //   console.log('Data written to file');
+    // });
   }
 })();
