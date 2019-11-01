@@ -1,6 +1,7 @@
 const request = require('request-promise');
 const cheerio = require('cheerio');
 const fs = require('fs');
+const { Parser } = require('json2csv');
 
 const URLS = [
   'https://www.imdb.com/title/tt9335498/?ref_=nv_sr_1?ref_=nv_sr_1',
@@ -49,8 +50,8 @@ const URLS = [
       }
     );
 
-    console.log({ title, rating, poster, totalRatings });
-    console.log(`Genres: ${genres}`);
+    // console.log({ title, rating, poster, totalRatings });
+    // console.log(`Genres: ${genres}`);
 
     movieData.push({
       title,
@@ -59,11 +60,18 @@ const URLS = [
       totalRatings,
       genres
     });
+    
+    const fields = ['title', 'rating'];
 
-    let data = JSON.stringify(movieData, null, 2);
-    fs.writeFile('output.json', data, err => {
-      if (err) throw err;
-      console.log('Data written to file');
-    });
+    const json2csvParser = new Parser({ fields });
+    const csv = json2csvParser.parse(movieData);
+
+    console.log(csv);
+
+    // let data = JSON.stringify(movieData, null, 2);
+    // fs.writeFile('output.json', data, err => {
+    //   if (err) throw err;
+    //   console.log('Data written to file');
+    // });
   }
 })();
