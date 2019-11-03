@@ -70,32 +70,32 @@ const URLS = [
 
     const file = fs.createWriteStream(`${movie.id}.jpg`);
 
-    const stream = request({
-      uri: poster,
-      headers: {
-        Accept:
-          'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Accept-Language': 'en-IE,en-US;q=0.9,en;q=0.8',
-        'Cache-Control': 'no-cache',
-        Connection: 'keep-alive',
-        'Upgrade-Insecure-Requests': '1',
-        'User-Agent':
-          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36'
-      },
-      gzip: true
-    }).pipe(file);
-
-    const test = await new Promise((resolve, reject) => {
-      const is_home = false;
-
-      if (is_home) {
-        resolve(true);
-      } else {
-        reject(false);
-      }
+    await new Promise((resolve, reject) => {
+      const stream = request({
+        uri: poster,
+        headers: {
+          Accept:
+            'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+          'Accept-Encoding': 'gzip, deflate, br',
+          'Accept-Language': 'en-IE,en-US;q=0.9,en;q=0.8',
+          'Cache-Control': 'no-cache',
+          Connection: 'keep-alive',
+          'Upgrade-Insecure-Requests': '1',
+          'User-Agent':
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36'
+        },
+        gzip: true
+      })
+        .pipe(file)
+        .on('finish', () => {
+          console.log(`${movie.id} finished downloading the image`);
+          resolve();
+        })
+        .on('error', error => {
+          reject(error);
+        });
     }).catch(err => {
-      console.log(err);
+      console.log(`Error message: ${err}`);
     });
 
     //* Output to a CSV file
