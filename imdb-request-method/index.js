@@ -8,7 +8,7 @@ const URLS = [
   {
     url: 'https://www.imdb.com/title/tt9335498/?ref_=nv_sr_1?ref_=nv_sr_1',
     id: 'Demon_Slayer_Kimetsu_No_Yaiba'
-  },
+  }
   // {
   //   url: ' https://www.imdb.com/title/tt8788458/?ref_=tt_sims_tt',
   //   id: 'The_Promised_Neverland'
@@ -85,6 +85,22 @@ const URLS = [
       },
       gzip: true
     }).pipe(file);
+
+    try {
+      const test = await new Promise((resolve, reject) => {
+        const is_home = false;
+
+        if (is_home) {
+          resolve(true);
+        } else {
+          reject(false);
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
+
 
     //* Output to a CSV file
     // const json2csvParser = new Parser();
