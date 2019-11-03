@@ -7,12 +7,12 @@ const { Parser } = require('json2csv');
 const URLS = [
   {
     url: 'https://www.imdb.com/title/tt9335498/?ref_=nv_sr_1?ref_=nv_sr_1',
-    id: 'Demon_Slayer:_Kimetsu_No_Yaiba'
+    id: 'Demon_Slayer_Kimetsu_No_Yaiba'
   },
-  {
-    url: ' https://www.imdb.com/title/tt8788458/?ref_=tt_sims_tt',
-    id: 'The_Promised_Neverland'
-  }
+  // {
+  //   url: ' https://www.imdb.com/title/tt8788458/?ref_=tt_sims_tt',
+  //   id: 'The_Promised_Neverland'
+  // }
 ];
 
 (async () => {
@@ -68,7 +68,23 @@ const URLS = [
       genres
     });
 
-    const file = fs.createWriteStream(`S{movie.id}.jpg`);
+    const file = fs.createWriteStream(`${movie.id}.jpg`);
+
+    const stream = request({
+      uri: poster,
+      headers: {
+        Accept:
+          'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Accept-Language': 'en-IE,en-US;q=0.9,en;q=0.8',
+        'Cache-Control': 'no-cache',
+        Connection: 'keep-alive',
+        'Upgrade-Insecure-Requests': '1',
+        'User-Agent':
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36'
+      },
+      gzip: true
+    }).pipe(file);
 
     //* Output to a CSV file
     // const json2csvParser = new Parser();
