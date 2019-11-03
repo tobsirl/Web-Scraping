@@ -86,21 +86,17 @@ const URLS = [
       gzip: true
     }).pipe(file);
 
-    try {
-      const test = await new Promise((resolve, reject) => {
-        const is_home = false;
+    const test = await new Promise((resolve, reject) => {
+      const is_home = false;
 
-        if (is_home) {
-          resolve(true);
-        } else {
-          reject(false);
-        }
-      });
-    } catch (error) {
-      console.log(error);
-    }
-
-
+      if (is_home) {
+        resolve(true);
+      } else {
+        reject(false);
+      }
+    }).catch(err => {
+      console.log(err);
+    });
 
     //* Output to a CSV file
     // const json2csvParser = new Parser();
