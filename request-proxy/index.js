@@ -2,14 +2,11 @@ const request = require('request-promise');
 const cheerio = require('cheerio');
 
 (async () => {
-  let initialRequest = await request({
-    uri: 'http://quotes.toscrape.com/login',
-    method: 'GET',
-  });
+  let initialRequest = await request('http://quotes.toscrape.com/login');
 
-  let $ = cheerio.load(initialRequest)
+  let $ = cheerio.load(initialRequest);
 
-  let csrfToken = $('input')
+  let csrfToken = $('input[name="csrf_token"]').val();
 
   debugger;
 })();
