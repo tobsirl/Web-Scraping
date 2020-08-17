@@ -1,11 +1,15 @@
-// 'http://user:password@ip:port' proxy an ip address for scraping
-const request = require('request-promise').defaults({
-  proxy: 'http://user:password@ip:port',
-})
-
+const request = require('request-promise');
+const cheerio = require('cheerio');
 
 (async () => {
-  let response = await request('https://httpbin.org/ip');
+  let initialRequest = await request({
+    uri: 'http://quotes.toscrape.com/login',
+    method: 'GET',
+  });
+
+  let $ = cheerio.load(initialRequest)
+
+  let csrfToken = $('input')
 
   debugger;
 })();
